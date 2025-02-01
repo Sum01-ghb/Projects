@@ -13,6 +13,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: azure;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 600;
+  font-size: x-large;
 }
 
 .container {
