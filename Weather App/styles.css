@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 90%;
+  max-width: 400px;
+  background: rgba(10, 6, 245, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Weather Section */
+.weather-container {
+  padding: 20px;
+}
+
+.temp p {
+  font-size: 60px;
+  font-weight: 600;
+}
+
+.time-location p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.condition p {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+/* Search Bar */
+nav form {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.search-area {
+  width: 70%;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
+  outline: none;
+  font-size: 16px;
+  text-align: center;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 10px;
+  background: rgba(41, 1, 162, 0.3);
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  transition: 0.4s;
+}
+
+button:hover {
+  background: rgba(160, 203, 252, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .container {
+    width: 95%;
+  }
+
+  .temp p {
+    font-size: 50px;
+  }
+
+  .time-location p {
+    font-size: 16px;
+  }
+
+  .condition p {
+    font-size: 18px;
+  }
+
+  .search-area {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+}
