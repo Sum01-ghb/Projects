@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const weatherContainer = document.querySelector(".weather-container");
+  const weatherContainer = document.getElementById("weather-container");
   const temperatureField = document.querySelector(".temp");
   const locationField = document.querySelector(".time-location p");
   const dateField = document.querySelector(".time-location span");
@@ -8,57 +8,60 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
 
   form.addEventListener("submit", searchForLocation);
-  let target = "Kolkata";
 
   const fetchData = async (targetLocation) => {
-    let url = `http://api.weatherapi.com/v1/current.json?key=a5afb5effb7c4d6f82b74304250102&q=${targetLocation}&aqi=no`;
-    const res = await fetch(url);
-    const data = await res.json();
+    const apiKey = "a5afb5effb7c4d6f82b74304250102";
+    const url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${targetLocation}&aqi=no`;
 
-    console.log(data);
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error("Location not found");
+      const data = await res.json();
 
-    let locationName = data.location.name;
-    let time = data.location.localtime;
-    let temp = data.current.temp_c;
-    let condition = data.current.condition.text;
+      const { name, localtime } = data.location;
+      const { temp_c, condition } = data.current;
+      const iconUrl = `https:${condition.icon}`;
 
-    updateDetails(locationName, time, temp, condition);
+      updateDetails(name, localtime, temp_c, condition.text, iconUrl);
+      weatherContainer.classList.remove("hidden");
+    } catch (error) {
+      alert("Error: " + error.message);
+    }
   };
 
-  function updateDetails(locationName, time, temp, condition) {
-    let splitDate = time.split(" ")[0];
-    let splitTime = time.split(" ")[1];
-    let currentDay = dayName(new Date(splitDate).getDay());
+  function updateDetails(city, localTime, temp, condition, iconUrl) {
+    const [date, time] = localTime.split(" ");
+    const day = getDayName(new Date(date).getDay());
 
-    locationField.innerText = locationName;
-    dateField.innerText = `${splitDate} ${currentDay} ${splitTime}`;
-    temperatureField.innerText = temp;
+    locationField.innerText = city;
+    dateField.innerHTML = `${day}, ${date} - ${time}`;
+    temperatureField.innerText = `${temp}°C`;
     conditionField.innerText = condition;
+
+    const weatherIcon = document.createElement("img");
+    weatherIcon.src = iconUrl;
+    weatherIcon.alt = condition;
+
+    conditionField.innerHTML = "";
+    conditionField.appendChild(weatherIcon);
+    conditionField.appendChild(document.createTextNode(condition));
   }
 
-  function searchForLocation(e) {
-    e.preventDefault();
-    target = searchField.value;
-    fetchData(target);
+  function searchForLocation(event) {
+    event.preventDefault();
+    const targetLocation = searchField.value.trim();
+    if (targetLocation) fetchData(targetLocation);
   }
-  fetchData(target);
 
-  function dayName(number) {
-    switch (number) {
-      case 0:
-        return "Sunday";
-      case 1:
-        return "Monday";
-      case 2:
-        return "Tuesday";
-      case 3:
-        return "Wednesday";
-      case 4:
-        return "Thursday";
-      case 5:
-        return "Friday";
-      case 6:
-        return "Saturday";
-    }
+  function getDayName(index) {
+    return [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ][index];
   }
 });
