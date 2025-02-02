@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: linear-gradient(175deg, #ff8c00, #181818);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+  color: white;
+}
+
+h1 {
+  font-weight: 700;
+  font-size: xx-large;
+  color: rgb(253, 128, 3);
+  font-family: "Times New Roman", Times, serif;
+}
+
+.container {
+  width: 90%;
+  max-width: 500px;
+  background: #1e1e1e;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 255, 255, 0.2);
+  text-align: center;
+}
+
+/* Search Form */
+.search-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+
+.search-form input {
+  width: 70%;
+  padding: 10px;
+  border: 2px solid #00f2fe;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  background: #252525;
+  color: white;
+  transition: 0.3s;
+}
+
+.search-form input:focus {
+  border-color: #00ffcc;
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+.search-form button {
+  padding: 10px 15px;
+  background: #f2f5f5;
+  color: #121212;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.3s ease-in-out;
+}
+
+.search-form button:hover {
+  background: #4eba67;
+  box-shadow: 0 0 10px #00ffcc;
+}
+
+/* Dictionary Result Card */
+.card {
+  background: #222222;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 8px rgba(0, 255, 255, 0.1);
+  text-align: left;
+}
+
+.card h2 {
+  font-size: 22px;
+  color: #00f2fe;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 16px;
+  color: #ccc;
+  margin: 8px 0;
+}
+
+.card span {
+  font-weight: bold;
+  color: #00ffcc;
+}
+
+#audio {
+  width: 100%;
+  margin-top: 10px;
+  background: #333;
+  border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .search-form {
+    flex-direction: column;
+  }
+
+  .search-form input {
+    width: 100%;
+  }
+}
+
+.hidden {
+  display: none;
+}
